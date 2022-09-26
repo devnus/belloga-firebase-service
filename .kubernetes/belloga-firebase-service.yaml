@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: firebase-service
+  labels:
+    app: firebase-service
+    service: firebase-service
+spec:
+  ports:
+    - port: 8080
+      name: http
+  selector:
+    app: firebase-service
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: belloga-firebase-service
+  labels:
+    account: firebase-service
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: firebase-service-v1
+  labels:
+    app: firebase-service
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: firebase-service
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: firebase-service
+        version: v1
+      annotations:
+        sidecar.istio.io/inject: "true"
+        traffic.sidecar.istio.io/excludeInboundPorts: "9092" # 9092 카프카포트는 istio proxy 처리에서 제외하겠다.
+        traffic.sidecar.istio.io/excludeOutboundPorts: "9092"
+    spec:
+      serviceAccountName: belloga-firebase-service
+      containers:
+        - name: firebase-service
+          image: 023778162658.dkr.ecr.ap-northeast-2.amazonaws.com/belloga-firebase-service:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: local
