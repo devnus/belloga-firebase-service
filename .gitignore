@@ -38,3 +38,5 @@ out/
 
 ## 문서화 결과 추적무시
 src/main/resources/static/docs/
+
+src/main/resources/secrets
