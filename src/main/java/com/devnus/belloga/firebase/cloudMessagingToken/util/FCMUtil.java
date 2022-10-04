@@ -1,11 +1,10 @@
-package com.devnus.belloga.firebase.pushNotification.util;
+package com.devnus.belloga.firebase.cloudMessagingToken.util;
 
-import com.devnus.belloga.firebase.pushNotification.domain.AndroidPriority;
-import com.devnus.belloga.firebase.pushNotification.domain.ApnsPriority;
-import com.devnus.belloga.firebase.pushNotification.domain.ApnsPushType;
-import com.devnus.belloga.firebase.pushNotification.domain.SubscribeType;
+import com.devnus.belloga.firebase.cloudMessagingToken.domain.AndroidPriority;
+import com.devnus.belloga.firebase.cloudMessagingToken.domain.ApnsPriority;
+import com.devnus.belloga.firebase.cloudMessagingToken.domain.ApnsPushType;
+import com.devnus.belloga.firebase.cloudMessagingToken.domain.SubscribeType;
 import com.google.firebase.messaging.*;
-import lombok.Getter;
 import org.springframework.stereotype.Component;
 
 import java.util.EnumSet;

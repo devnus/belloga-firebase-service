@@ -1,9 +1,9 @@
-package com.devnus.belloga.firebase.pushNotification.dto;
+package com.devnus.belloga.firebase.cloudMessagingToken.dto;
 
-import com.devnus.belloga.firebase.pushNotification.domain.AndroidPriority;
-import com.devnus.belloga.firebase.pushNotification.domain.ApnsPriority;
-import com.devnus.belloga.firebase.pushNotification.domain.ApnsPushType;
-import com.devnus.belloga.firebase.pushNotification.domain.SubscribeType;
+import com.devnus.belloga.firebase.cloudMessagingToken.domain.AndroidPriority;
+import com.devnus.belloga.firebase.cloudMessagingToken.domain.ApnsPriority;
+import com.devnus.belloga.firebase.cloudMessagingToken.domain.ApnsPushType;
+import com.devnus.belloga.firebase.cloudMessagingToken.domain.SubscribeType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-public class EventPushNotification {
+public class EventCloudMessagingToken {
     @Builder
     @Data
     @NoArgsConstructor

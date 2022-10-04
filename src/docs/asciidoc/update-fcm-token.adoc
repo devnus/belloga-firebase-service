@@ -1,0 +1,15 @@
+[[api-update-fcm-token]]
+== fcm 토큰 갱신 API
+사용자의 fcm 토큰을 갱신한다.
+
+====== 요청 형식
+include::{snippets}/update-fcm-token/http-request.adoc[]
+====== Request Body
+include::{snippets}/update-fcm-token/request-body.adoc[]
+====== 응답 형식
+include::{snippets}/update-fcm-token/http-response.adoc[]
+include::{snippets}/update-fcm-token/response-fields.adoc[]
+====== Response Body
+include::{snippets}/update-fcm-token/response-body.adoc[]
+====== Try with curl
+include::{snippets}/update-fcm-token/curl-request.adoc[]

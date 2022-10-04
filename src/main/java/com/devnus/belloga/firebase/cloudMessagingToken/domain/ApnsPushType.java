@@ -1,4 +1,4 @@
-package com.devnus.belloga.firebase.pushNotification.domain;
+package com.devnus.belloga.firebase.cloudMessagingToken.domain;
 
 import lombok.Getter;
 
