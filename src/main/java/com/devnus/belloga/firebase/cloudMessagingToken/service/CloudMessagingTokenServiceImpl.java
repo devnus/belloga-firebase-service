@@ -21,7 +21,7 @@ public class CloudMessagingTokenServiceImpl implements CloudMessagingTokenServic
     @Override
     @Transactional
     public void updateUserToken(String userId, UserRole role, String fcmToken) {
-        CloudMessagingToken token = cloudMessagingTokenRepository.findByUserId(userId)
+        CloudMessagingToken token = cloudMessagingTokenRepository.findByToken(fcmToken)
                 .orElseGet(()->null);
 
         if(token == null) {

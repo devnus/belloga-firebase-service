@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface CloudMessagingTokenRepository extends JpaRepository<CloudMessagingToken, Long> {
     Optional<CloudMessagingToken> findByUserId(String userId);
+    Optional<CloudMessagingToken> findByToken(String token);
 }
