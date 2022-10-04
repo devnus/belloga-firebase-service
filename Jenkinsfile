@@ -49,6 +49,28 @@ pipeline {
                 }
             }
         }
+        stage('create firebase admin sdk') {
+            steps {
+                dir('src/main/resources/secrets') {
+				withAWSParameterStore(credentialsId: "${env.AWS_CREDENTIAL_NAME}",
+              				path: "/belloga/firebase",
+              				naming: 'basename',
+              				regionName: 'ap-northeast-2') {
+
+                        writeFile file: 'belloga-firebase-adminsdk.json', text: "${env.ADMINSDK}"
+                    }
+			    }
+            }
+            post {
+                success {
+                    echo 'success create application-aws'
+                }
+                failure {
+                    error 'fail create application-aws'
+                }
+            }
+        }
+
         stage('build project') {
             steps {
                 sh '''
