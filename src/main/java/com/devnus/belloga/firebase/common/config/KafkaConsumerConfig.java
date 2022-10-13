@@ -1,5 +1,6 @@
 package com.devnus.belloga.firebase.common.config;
 
+import com.devnus.belloga.firebase.cloudMessagingToken.dto.EventCloudMessagingToken;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -49,5 +50,20 @@ public class KafkaConsumerConfig {
         return factory;
     }
 
+    @Bean
+    ConsumerFactory<String, EventCloudMessagingToken.Message> eventCloudMessagingTokenFactory(){
+        JsonDeserializer<EventCloudMessagingToken.Message> deserializer = new JsonDeserializer<>(EventCloudMessagingToken.Message.class);
 
+        deserializer.setRemoveTypeHeaders(false);
+        deserializer.addTrustedPackages("*");
+        deserializer.setUseTypeMapperForKey(true);
+        return new DefaultKafkaConsumerFactory<>(configProps(), new StringDeserializer(), deserializer);
+    }
+
+    @Bean
+    ConcurrentKafkaListenerContainerFactory<String, EventCloudMessagingToken.Message> eventCloudMessagingTokenListener(){
+        ConcurrentKafkaListenerContainerFactory<String, EventCloudMessagingToken.Message> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(eventCloudMessagingTokenFactory());
+        return factory;
+    }
 }
