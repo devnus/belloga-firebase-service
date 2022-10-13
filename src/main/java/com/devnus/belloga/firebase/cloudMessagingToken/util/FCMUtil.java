@@ -28,7 +28,7 @@ public class FCMUtil {
 
         /* ios 알림 설정 */
 
-        if(apnsPushType == null) apnsPushType = ApnsPushType.BACKGROUND; // 디폴트 설정
+        if(apnsPushType == null) apnsPushType = ApnsPushType.ALERT; // 디폴트 설정
         // ios 푸시타입 및 content-available true 설정
         ApnsConfig.Builder apnsConfigBuilder = ApnsConfig.builder()
                 .setAps(Aps.builder()
@@ -38,7 +38,7 @@ public class FCMUtil {
         // ios 우선순위 설정
         if(apnsPriority != null) {
             apnsConfigBuilder.putHeader("apns-priority", apnsPriority.getValue());
-        } else apnsConfigBuilder.putHeader("apns-priority", ApnsPriority.FIVE.getValue());
+        } else apnsConfigBuilder.putHeader("apns-priority", ApnsPriority.TEN.getValue());
 
         /* ///ios 알림 설정 끝///// */
 
