@@ -37,5 +37,6 @@ spring:
 app:
   topic:
     cloud-messaging-token:
-      fcm-push-notification: fcm-push-notification
+      fcm-push-notification-to-subscribe: fcm-push-notification-to-subscribe
+      fcm-push-notification-to-token: fcm-push-notification-to-token
 

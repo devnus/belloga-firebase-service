@@ -51,8 +51,8 @@ public class KafkaConsumerConfig {
     }
 
     @Bean
-    ConsumerFactory<String, EventCloudMessagingToken.Message> eventCloudMessagingTokenFactory(){
-        JsonDeserializer<EventCloudMessagingToken.Message> deserializer = new JsonDeserializer<>(EventCloudMessagingToken.Message.class);
+    ConsumerFactory<String, EventCloudMessagingToken.MessageBySubscribe> eventCloudMessagingTokenBySubscribeFactory(){
+        JsonDeserializer<EventCloudMessagingToken.MessageBySubscribe> deserializer = new JsonDeserializer<>(EventCloudMessagingToken.MessageBySubscribe.class);
 
         deserializer.setRemoveTypeHeaders(false);
         deserializer.addTrustedPackages("*");
@@ -61,9 +61,26 @@ public class KafkaConsumerConfig {
     }
 
     @Bean
-    ConcurrentKafkaListenerContainerFactory<String, EventCloudMessagingToken.Message> eventCloudMessagingTokenListener(){
-        ConcurrentKafkaListenerContainerFactory<String, EventCloudMessagingToken.Message> factory = new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(eventCloudMessagingTokenFactory());
+    ConcurrentKafkaListenerContainerFactory<String, EventCloudMessagingToken.MessageBySubscribe> eventCloudMessagingTokenBySubscribeListener(){
+        ConcurrentKafkaListenerContainerFactory<String, EventCloudMessagingToken.MessageBySubscribe> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(eventCloudMessagingTokenBySubscribeFactory());
+        return factory;
+    }
+
+    @Bean
+    ConsumerFactory<String, EventCloudMessagingToken.MessageByToken> eventCloudMessagingTokenByTokenFactory(){
+        JsonDeserializer<EventCloudMessagingToken.MessageByToken> deserializer = new JsonDeserializer<>(EventCloudMessagingToken.MessageByToken.class);
+
+        deserializer.setRemoveTypeHeaders(false);
+        deserializer.addTrustedPackages("*");
+        deserializer.setUseTypeMapperForKey(true);
+        return new DefaultKafkaConsumerFactory<>(configProps(), new StringDeserializer(), deserializer);
+    }
+
+    @Bean
+    ConcurrentKafkaListenerContainerFactory<String, EventCloudMessagingToken.MessageByToken> eventCloudMessagingTokenByTokenListener(){
+        ConcurrentKafkaListenerContainerFactory<String, EventCloudMessagingToken.MessageByToken> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(eventCloudMessagingTokenByTokenFactory());
         return factory;
     }
 }

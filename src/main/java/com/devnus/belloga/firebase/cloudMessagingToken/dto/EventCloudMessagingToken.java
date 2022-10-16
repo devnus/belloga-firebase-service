@@ -16,8 +16,23 @@ public class EventCloudMessagingToken {
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class Message {
+    public static class MessageBySubscribe {
         private List<SubscribeType> subscribeTypes; //보내고자하는 구독 유형 리스트
+        private String title;
+        private String body;
+        private String clickLink;
+
+        private ApnsPushType apnsPushType;
+        private ApnsPriority apnsPriority;
+        private AndroidPriority androidPriority;
+    }
+
+    @Builder
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class MessageByToken {
+        private String userId; // 사용자 id
         private String title;
         private String body;
         private String clickLink;
