@@ -174,7 +174,7 @@ pipeline {
             steps {
                 sshagent (credentials: ['bestion-ssh']) { // use SSH Agent
                 sh """
-                    ssh -o StrictHostKeyChecking=no ubuntu@43.200.60.243 '
+                    ssh -o StrictHostKeyChecking=no ubuntu@3.37.128.228 '
                     kubectl set image deploy firebase-service-v1 firebase-service=${IMAGE_NAME}:${BUILD_NUMBER}
                     '
                 """
